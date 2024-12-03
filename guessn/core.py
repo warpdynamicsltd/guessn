@@ -24,11 +24,9 @@ Z_ = V('Z')
 class DefaultTheme:
   def repr(self, obj):
     if isinstance(obj, GF):
-      return f"{type(obj).__name__}({','.join(map(lambda a: self.repr(a), obj.args))})"
+      return f"{type(obj).__name__}({', '.join(map(lambda a: self.repr(a), obj.args))})"
     else:
       return repr(obj)
-
-
 
 class GF:
   default_theme = DefaultTheme()

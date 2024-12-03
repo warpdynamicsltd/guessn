@@ -6,7 +6,7 @@ from abc import ABC, abstractmethod
 
 class Gen(ABC):
   @abstractmethod
-  def rnd_formulas(self, n, substitution):
+  def rnd_formula(self):
     pass
   
   @abstractmethod
@@ -21,6 +21,15 @@ class Gen(ABC):
   def get_vars(self):
     pass
 
+  def rnd_formulas(self, n, substitution):
+    res = []
+    while len(res) < n:
+      f = self.rnd_formula()
+      if f(substitution):
+        res.append(f)
+  
+    return res
+
   def gen_candidates_formulas(self, max_n_formulas):
     substitution = self.rnd_substitution()
     formulas = self.rnd_formulas(max_n_formulas, substitution)
@@ -33,19 +42,16 @@ class Gen(ABC):
 
     for vector in self.model_generator():
       success = True
-      for i, f in enumerate(formulas):
+      for k, f in enumerate(formulas):
         if not f({vars[i]:vector[i] for i, _ in enumerate(vars)}):
           success = False
         else:
-          sets[i].add(vector)
+          sets[k].add(hash(vector))
 
       if success:
-        res.append(vector)
+        res.append(hash(vector))
 
-    if len(res) == 1:
-      return sets
-
-    return None
+    return len(res), sets
   
   def eliminate_one(self, sets):
     for candidate in sets.keys():
@@ -63,14 +69,15 @@ class Gen(ABC):
     substitution = None
     for _ in range(attemps):
       formulas, substitution = self.gen_candidates_formulas(max_n_formulas)
-      sets = self.create_sets(formulas)
-      if sets is not None:
+      solutions, sets = self.create_sets(formulas)
+      if solutions == 1:
         break
-    if sets is None:
+    if solutions > 1:
       return None, None
     
     while True:
       index = self.eliminate_one(sets)
+      # print(len(sets))
       if index == -1:
         break
       del sets[index]

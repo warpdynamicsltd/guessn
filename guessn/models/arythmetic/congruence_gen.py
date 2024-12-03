@@ -33,29 +33,16 @@ class CongruenceGen(Gen):
 
     return Divides(random.randint(2, int(math.sqrt(self.max))), t)
 
-  def rnd_divs(self, n):
-    res = []
-    for _ in range(n):
-      f1 = self.rnd_div_form(random.sample(self.vars, k=2))
-      f2 = self.rnd_div_form(random.sample(self.vars, k=2))
-      
-      op = bool(random.choice([0, 1, 1, 1, 1, 1]))
+  def rnd_formula(self):
+    f1 = self.rnd_div_form(random.sample(self.vars, k=2))
+    f2 = self.rnd_div_form(random.sample(self.vars, k=2))
+    
+    op = bool(random.choice([0, 1, 1, 1, 1, 1]))
 
-      if op:
-        res.append(f1 & f2)
-      else:
-        res.append(f1 | f2)
-
-    return res
-  
-  def rnd_formulas(self, n, substitution):
-    res = []
-    while len(res) < n:
-      f, = self.rnd_divs(1)
-      if f(substitution):
-        res.append(f)
-  
-    return res
+    if op:
+      return f1 & f2
+    else:
+      return f1 | f2
   
   def rnd_substitution(self):
     substitution = {}

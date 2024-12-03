@@ -14,4 +14,8 @@ This will install the `guessn` module in your Python environment.
 
 ## Example Usage
 
-Refer to the Jupyter notebook [notebooks/main.ipynb](notebooks/main.ipynb) for detailed usage examples.
+There are 2 types of puzzles supported by now
+
+1. Guess integers which satisfy some divisibility constraints. See [notebooks/arythmetic.ipynb](notebooks/arythmetic.ipynb) for detailed usage examples.
+
+2. Simple Zebra Puzzles. See [notebooks/zebra.ipynb](notebooks/zebra.ipynb) for detailed usage examples.

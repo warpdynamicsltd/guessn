@@ -1,3 +1,5 @@
+from guessn.core import GF
+
 class Theme:
   def repr(self, obj):
     try:
@@ -11,4 +13,7 @@ class Theme:
     return f"{obj.name}"
 
   def repr_default(self, obj):
-    return repr(obj)
+    if isinstance(obj, GF):
+      return f"{type(obj).__name__}({', '.join(map(lambda a: self.repr(a), obj.args))})"
+    else:
+      return repr(obj)
