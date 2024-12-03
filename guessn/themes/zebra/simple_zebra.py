@@ -5,7 +5,7 @@ schema = {
   ('colors', 'professions'): lambda a, b: f"a {b} lives in a {a} house",
   ('colors', 'hobbies'): lambda a, b: f"a person who lives in a {a} house is {b}",
   ('colors', '*'): lambda a, b: f"there is a {b} in a {a} house",
-  ('professions', 'hobbies'): lambda a, b: f"{a} is {b}",
+  ('professions', 'hobbies'): lambda a, b: f"a {a} is {b}",
   ('professions', 'pets'): lambda a, b: f"a {a} has a {b}",
   ('professions', '*'): lambda a, b: f"a {a} has a {b}",
   ('pets', '*'): lambda a, b: f"a {a} lives in a house with a {b}",

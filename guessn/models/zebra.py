@@ -104,9 +104,14 @@ Only one person lives in each house and these people are: {', '.join(self.univer
     for i, formula in enumerate(formulas):
       description += f"{i + 1}. {repr(formula).capitalize()}." + '\n'
 
-    description += f"""
+    hobbies = ''
+    if 'hobbies' in self.universe:
+      hobbies = ' Also answer which hobby is whose.'
 
-Answer what are colors of houses and who lives at which address and what stuff is there. Prepare response in a well formatted JSON like the following example:
+    description += f"""
+Answer what are colors of houses and who lives at which address and what stuff is there.{hobbies}
+
+Prepare response in a well formatted JSON like the following example:
 {json.dumps(self.universe)}
 """
 
