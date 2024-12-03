@@ -102,11 +102,11 @@ Only one person lives in each house and these people are: {', '.join(self.univer
     description += '\n\n'
 
     for i, formula in enumerate(formulas):
-      description += f"{i + 1}. {formula}" + '\n'
+      description += f"{i + 1}. {repr(formula).capitalize()}." + '\n'
 
     description += f"""
 
-Answer who lives at which address and what stuff is there. Prepare respose in a well formated JSON like the following example:
+Answer who lives at which address and what stuff is there. Prepare respose in a well formatted JSON like the following example:
 {json.dumps(self.universe)}
 """
 
@@ -145,7 +145,8 @@ Answer who lives at which address and what stuff is there. Prepare respose in a 
   def rnd_formula(self):
     f1 = self.rnd_same_house()
     f2 = self.rnd_house_number()
-    return random.choice([f1, f2])
+    #return random.choice([f1, f2])
+    return f1 | f2
 
 
       
