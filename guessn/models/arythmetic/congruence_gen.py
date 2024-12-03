@@ -5,7 +5,7 @@ from itertools import product
 from operator import and_
 from functools import reduce
 
-from guessn.fundation import *
+from guessn.core import *
 from guessn.models.arythmetic import Add, Sub, Mul, Divides
 from guessn.models.gen import Gen
 

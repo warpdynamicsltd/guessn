@@ -1,4 +1,4 @@
-from guessn.fundation import V, Term
+from guessn.core import V, Term
 from guessn.models.logic import LogicFormula
 
 class Divides(LogicFormula):

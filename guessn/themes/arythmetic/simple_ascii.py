@@ -1,4 +1,4 @@
-from guessn.fundation import GF
+from guessn.core import GF
 from guessn.themes.logic.simple_ascii import SimpleAsciiLogicTheme
 from guessn.themes.theme import Theme
 from guessn.models.arythmetic import Add, Sub, Mul, Divides

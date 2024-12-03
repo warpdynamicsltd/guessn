@@ -1,4 +1,4 @@
-from guessn.fundation import V, GF
+from guessn.core import V, GF
 
 class LogicFormula(GF):
   def __init__(self, model, *args):
