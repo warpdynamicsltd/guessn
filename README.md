@@ -1,6 +1,6 @@
 # guessn
 
-`guessn` is a Python module designed for generating constraint-based puzzles involving integers. The module allows users to automatically find constrains for the puzzle with unique solution.
+`guessn` is a Python module designed for generating constraint-based puzzles. The module allows users to automatically find constrains for a puzzle with unique solution.
 
 ## Installation
 
