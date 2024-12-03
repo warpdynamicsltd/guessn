@@ -106,7 +106,7 @@ Only one person lives in each house and these people are: {', '.join(self.univer
 
     description += f"""
 
-Answer who lives at which address and what stuff is there. Prepare respose in a well formatted JSON like the following example:
+Answer what are colors of houses and who lives at which address and what stuff is there. Prepare response in a well formatted JSON like the following example:
 {json.dumps(self.universe)}
 """
 
@@ -142,9 +142,16 @@ Answer who lives at which address and what stuff is there. Prepare respose in a 
     n = random.randint(0, self.n_objects - 1)
     return HouseNumber(X_, (cat, obj), n)
   
+  def rnd_atomic_formula(self):
+    method = random.choice([self.rnd_same_house, self.rnd_house_number])
+    return method()
+  
   def rnd_formula(self):
-    f1 = self.rnd_same_house()
-    f2 = self.rnd_house_number()
+    f1 = self.rnd_atomic_formula()
+    if bool(random.choice([0, 1])):
+      return f1
+    
+    f2 = self.rnd_atomic_formula()
     #return random.choice([f1, f2])
     return f1 | f2
 

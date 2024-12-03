@@ -1,16 +1,16 @@
 from guessn.themes.theme import Theme
 
 schema = {
-  ('colors', 'pets'): lambda a, b: f"{b} lives in a {a} house",
-  ('colors', 'professions'): lambda a, b: f"{b} lives in a {a} house",
+  ('colors', 'pets'): lambda a, b: f"a {b} lives in a {a} house",
+  ('colors', 'professions'): lambda a, b: f"a {b} lives in a {a} house",
   ('colors', 'hobbies'): lambda a, b: f"a person who lives in a {a} house is {b}",
   ('colors', '*'): lambda a, b: f"there is a {b} in a {a} house",
   ('professions', 'hobbies'): lambda a, b: f"{a} is {b}",
-  ('professions', 'pets'): lambda a, b: f"{a} has a {b}",
-  ('professions', '*'): lambda a, b: f"{a} has a {b}",
-  ('pets', '*'): lambda a, b: f"{a} lives in a house with a {b}",
-  ('hobbies', '*'): lambda a, b: f"owner of a {b} is {a}",
-  ('*', '*'): lambda a, b: f"owner of a {a} has {b}"
+  ('professions', 'pets'): lambda a, b: f"a {a} has a {b}",
+  ('professions', '*'): lambda a, b: f"a {a} has a {b}",
+  ('pets', '*'): lambda a, b: f"a {a} lives in a house with a {b}",
+  ('hobbies', '*'): lambda a, b: f"an owner of a {b} is {a}",
+  ('*', '*'): lambda a, b: f"an owner of a {a} has {b}"
 }
   
 
@@ -45,10 +45,10 @@ class SimpleZebraTheme(Theme):
       return f"the house number {n} is {x}"
     
     if cat in 'professions':
-      return f"{x} lives at number {n}"
+      return f"a {x} lives at number {n}"
     
     if cat in 'pets':
-      return f"{x} lives in the house number {n}"
+      return f"a {x} lives in the house number {n}"
     
     if cat in 'hobbies':
       return f"a person who lives at number {n} is {x}"
