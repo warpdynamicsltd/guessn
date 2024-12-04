@@ -89,11 +89,11 @@ class ZebraGen(Gen):
     description = f"""
 There are {self.n_objects} houses on a street with numbers from 1 to {self.n_objects}.
 Each house is painted in a distinct color and the colors are: {', '.join(self.universe['colors'])}.
-Only one person lives in each house and these people are: {', '.join(self.universe['professions'])}. 
+Each house is occupied by one of the following people: {', '.join(self.universe['professions'])}. 
 """
     
     if 'hobbies' in self.universe:
-      description += f"Each of them has one of the following hobbies: {', '.join(self.universe['hobbies'])}" + '\n'
+      description += f"Each of them has a distinct hobby and the hobbies are: {', '.join(self.universe['hobbies'])}" + '\n'
     
     for cat in self._categories:
       if cat not in ('colors', 'hobbies', 'professions'):

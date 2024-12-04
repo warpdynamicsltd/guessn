@@ -16,7 +16,7 @@ schema = {
 
 class SimpleZebraTheme(Theme):
   def repr_OR(self, obj):
-    return f"{self.repr(obj.args[0])} or {self.repr(obj.args[1])} or both"
+    return f"{self.repr(obj.args[0])} or {self.repr(obj.args[1])}"
 
   def repr_SameHouse(self, obj):
     cat1, obj1 = obj.args[1]
