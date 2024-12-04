@@ -1,16 +1,23 @@
 from guessn.themes.theme import Theme
 
+def article(a):
+  if a[0] in ('a', 'e', 'u', 'o', 'i', 'h'):
+    return "an"
+  else:
+    return "a"
+
 schema = {
-  ('colors', 'pets'): lambda a, b: f"a {b} lives in a {a} house",
-  ('colors', 'professions'): lambda a, b: f"a {b} lives in a {a} house",
-  ('colors', 'hobbies'): lambda a, b: f"a person who lives in a {a} house is {b}",
-  ('colors', '*'): lambda a, b: f"there is a {b} in a {a} house",
-  ('professions', 'hobbies'): lambda a, b: f"a {a} is {b}",
-  ('professions', 'pets'): lambda a, b: f"a {a} has a {b}",
-  ('professions', '*'): lambda a, b: f"a {a} has a {b}",
-  ('pets', '*'): lambda a, b: f"a {a} lives in a house with a {b}",
-  ('hobbies', '*'): lambda a, b: f"an owner of a {b} is {a}",
-  ('*', '*'): lambda a, b: f"an owner of a {a} has {b}"
+  ('colors', 'pets'): lambda a, b: f"a {b} lives in {article(a)} {a} house",
+  ('colors', 'professions'): lambda a, b: f"a {b} lives in {article(a)} {a} house",
+  ('colors', 'hobbies'): lambda a, b: f"a person who lives in {article(a)} {a} house is {b}",
+  ('colors', '*'): lambda a, b: f"there is a {b} in {article(a)} {a} house",
+  ('professions', 'hobbies'): lambda a, b: f"{article(a)} {a} is {b}",
+  ('professions', 'pets'): lambda a, b: f"{article(a)} {a} has {article(b)} {b}",
+  ('professions', '*'): lambda a, b: f"{article(a)} {a} has {article(b)} {b}",
+  ('pets', '*'): lambda a, b: f"{article(a)} {a} lives in a house with {article(b)} {b}",
+  ('hobbies', 'pets'): lambda a, b: f"a person who is {a} has {article(b)} {b}",
+  ('hobbies', '*'): lambda a, b: f"an owner of {article(b)} {b} is {a}",
+  ('*', '*'): lambda a, b: f"an owner of {article(a)} {a} has {b}"
 }
   
 
@@ -45,12 +52,12 @@ class SimpleZebraTheme(Theme):
       return f"the house number {n} is {x}"
     
     if cat in 'professions':
-      return f"a {x} lives at number {n}"
+      return f"{article(x)} {x} lives at number {n}"
     
     if cat in 'pets':
-      return f"a {x} lives in the house number {n}"
+      return f"{article(x)} {x} lives in the house number {n}"
     
     if cat in 'hobbies':
       return f"a person who lives at number {n} is {x}"
     
-    return f"there is a {x} in the house number {n}"
+    return f"there is {article(x)} {x} in the house number {n}"
