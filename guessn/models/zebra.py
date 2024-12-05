@@ -36,6 +36,11 @@ def in_the_same_house(state, a, b):
 def in_the_house_number(state, a, n):
   cat1, x1 = a
   return state[cat1].index(x1) == n
+
+def are_neighbours(state, a, b):
+  cat1, x1 = a
+  cat2, x2 = b
+  return abs(state[cat1].index(x1) - state[cat2].index(x2)) == 1
   
 class SameHouse(LogicFormula):
   def __init__(self, *args):
@@ -44,6 +49,10 @@ class SameHouse(LogicFormula):
 class HouseNumber(LogicFormula):
   def __init__(self, *args):
     LogicFormula.__init__(self, in_the_house_number, *args)
+
+class AreNeighbours(LogicFormula):
+  def __init__(self, *args):
+    LogicFormula.__init__(self, are_neighbours, *args)
 
 class ZebraGen(Gen):
   categories = {
@@ -141,6 +150,12 @@ Prepare response in a well formatted JSON like the following example:
     obj2 = random.choice(self.universe[cat2])
     return SameHouse(X_, (cat1, obj1), (cat2, obj2))
   
+  def rnd_neighbour_house(self):
+    cat1, cat2 = random.sample(self._categories, k=2)
+    obj1 = random.choice(self.universe[cat1])
+    obj2 = random.choice(self.universe[cat2])
+    return AreNeighbours(X_, (cat1, obj1), (cat2, obj2))
+  
   def rnd_house_number(self):
     cat = random.choice(self._categories)
     obj = random.choice(self.universe[cat])
@@ -148,7 +163,7 @@ Prepare response in a well formatted JSON like the following example:
     return HouseNumber(X_, (cat, obj), n)
   
   def rnd_atomic_formula(self):
-    method = random.choice([self.rnd_same_house, self.rnd_house_number])
+    method = random.choice([self.rnd_same_house, self.rnd_house_number, self.rnd_neighbour_house])
     return method()
   
   def rnd_formula(self):
