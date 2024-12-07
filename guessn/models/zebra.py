@@ -61,7 +61,7 @@ class ZebraGen(Gen):
     "professions": ["teacher", "chef", "artist", "writer", "musician", "gardener", "scientist", "carpenter"],
     "furniture": ["sofa", "table", "chair", "bed", "bookshelf", "wardrobe", "desk", "cabinet"],
     "appliances": ["refrigerator", "oven", "microwave", "washing machine", "dishwasher", "vacuum cleaner", "fan", "air conditioner"],
-    "decor": ["painting", "vase", "lamp", "clock", "rug", "curtains", "mirror", "cushion"],
+    "decor": ["painting", "vase", "lamp", "clock", "rug", "curtain", "mirror", "cushion"],
     "hobbies": ["reading", "painting", "sewing", "knitting", "cooking", "playing board games", "playing guitar", "writing"]
   }
 
